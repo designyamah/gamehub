@@ -2,7 +2,7 @@ import { Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 
 const GameGrid = () => {
-  //the useGame ook is a custom hhok used to fecth the games
+  //the useGame hook is a custom hhok used to fecth the games
   const { games, setGames, error, setError } = useGames();
   return (
     <>
