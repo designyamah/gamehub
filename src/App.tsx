@@ -19,7 +19,7 @@ function App() {
             2
           </GridItem>
         </Show>
-        <GridItem w="100%" bg="yellow" area={"main"}>
+        <GridItem w="100%" area={"main"}>
           <GameGrid />
         </GridItem>
       </Grid>
