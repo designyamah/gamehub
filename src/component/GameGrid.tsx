@@ -1,27 +1,9 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
 import { Text } from "@chakra-ui/react";
-
-interface Game {
-  id: number;
-  name: string;
-}
-
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
+import useGames from "../hooks/useGames";
 
 const GameGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchGamesResponse>("/games")
-      .then((res) => setGames(res.data.results))
-      .catch((err) => setError(err.message));
-  }, []);
+  //the useGame ook is a custom hhok used to fecth the games
+  const { games, setGames, error, setError } = useGames();
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -35,3 +17,5 @@ const GameGrid = () => {
 };
 
 export default GameGrid;
+
+// a compoenet shuld majorly focus on rturning a visualViewport, but there are some functionality that are need to crate those views which we can also put in the Component, to make the code more clearner we can creatte a custom hook to handle those functionality for fetching the games.
