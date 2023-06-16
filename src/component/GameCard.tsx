@@ -1,6 +1,7 @@
 import {
   Card,
   CardBody,
+  HStack,
   Heading,
   Image,
   List,
@@ -10,6 +11,8 @@ import {
 import { Game } from "../hooks/useGames";
 import Platform from "./IconPlatForm";
 import IconPlatForm from "./IconPlatForm";
+import Gamescore from "./Gamescore";
+import getCropUrl from "../services/image-url";
 
 interface Props {
   game: Game;
@@ -17,7 +20,7 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   return (
     <Card overflow={"hidden"} borderRadius={10}>
-      <Image src={game.background_image} />
+      <Image src={getCropUrl(game.background_image)} />
       <CardBody>
         <Heading fontSize="2xl">{game.name}</Heading>
         {/* <List>
@@ -26,7 +29,12 @@ const GameCard = ({ game }: Props) => {
           ))}
         </List> */}
         {/* method 2 */}
-        <IconPlatForm platform={game.parent_platforms.map((p) => p.platform)} />
+        <HStack justifyContent="space-between">
+          <IconPlatForm
+            platform={game.parent_platforms.map((p) => p.platform)}
+          />
+          <Gamescore score={game.metacritic} />
+        </HStack>
       </CardBody>
     </Card>
   );
