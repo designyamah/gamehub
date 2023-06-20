@@ -12,7 +12,7 @@ const GenreList = () => {
       {genre.length === 0
         ? Skeleton.map((gen) => <GenreSkeleton key={gen} />)
         : genre.map((g) => (
-            <ListItem paddingY={"5PX"}>
+            <ListItem paddingY={"5PX"} key={g.id}>
               <HStack>
                 <Image
                   boxSize="32px"
