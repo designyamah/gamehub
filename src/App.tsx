@@ -5,7 +5,7 @@ import GenreList from "./component/GenreList";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState({});
   const onselected = (genre: any) => {
     console.log(genre);
     setSelectedGenre(genre);
@@ -34,7 +34,7 @@ function App() {
             <GenreList onselected={onselected} selectedGenre={selectedGenre} />
           </GridItem>
         </Show>
-        <GridItem w="100%" area={"main"}>
+        <GridItem w="100%" area={"main"} padding={"20px"}>
           <GameGrid seleectedGenre={selectedGenre} />
         </GridItem>
       </Grid>

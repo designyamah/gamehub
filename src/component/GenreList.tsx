@@ -1,37 +1,45 @@
-import { Button, HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import useGenre from "../hooks/useGenre";
 import getCropUrl from "../services/image-url";
 import GenreSkeleton from "./GenreSkeleton";
 
 interface Props {
-  onselected: (genre: number) => void;
-  selectedGenre: number | null;
+  onselected: (genre: any) => void;
+  selectedGenre: any;
 }
 
 const GenreList = ({ onselected, selectedGenre }: Props) => {
   const { genre } = useGenre();
-  const Skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const Skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
   return (
     <List paddingTop={"20px"}>
       {genre.length === 0
         ? Skeleton.map((gen) => <GenreSkeleton key={gen} />)
         : genre.map((g) => (
-            <ListItem paddingY={"5PX"} key={g.id}>
+            <ListItem marginBottom={"10px"} key={g.id}>
               <HStack
-                backgroundColor={g.id === selectedGenre ? "gray.700" : " "}
-                borderRadius={g.id === selectedGenre ? "10px" : " "}
+                backgroundColor={g.id === selectedGenre.id ? "gray.700" : " "}
+                borderRadius={g.id === selectedGenre.id ? "10px" : " "}
               >
-                <Image
+                {/* <Image
                   boxSize="32px"
                   borderRadius="8px"
                   src={getCropUrl(g.image_background)}
                   objectFit={"cover"}
-                />
+                /> */}
                 <Button
-                  fontSize={"lg"}
                   variant={"link"}
-                  onClick={() => onselected(g.id)}
+                  onClick={() => onselected(g)}
+                  padding={"10px"}
                 >
                   {g.name}
                 </Button>

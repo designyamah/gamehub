@@ -9,7 +9,7 @@ import {
 const GenreSkeleton = () => {
   return (
     <HStack spacing={2} marginBottom={"20px"}>
-      <Skeleton boxSize={"32px"}></Skeleton>
+      {/* <Skeleton boxSize={"32px"}></Skeleton> */}
       <SkeletonText width={"100%"}></SkeletonText>
     </HStack>
   );
