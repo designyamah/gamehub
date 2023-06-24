@@ -3,12 +3,20 @@ import Navbar from "./component/Navbar";
 import GameGrid from "./component/GameGrid";
 import GenreList from "./component/GenreList";
 import { useEffect, useState } from "react";
+import PlatformSelectors from "./component/PlatformSelectors";
+import { GamePaltform } from "./hooks/usePlatform";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState({});
+  const [selectedPlatform, setSelectedPlatform] = useState({});
+
   const onselected = (genre: any) => {
     console.log(genre);
     setSelectedGenre(genre);
+  };
+
+  const onselectedPlatform = (platform: any) => {
+    setSelectedPlatform(platform);
   };
 
   useEffect(() => {
@@ -35,7 +43,14 @@ function App() {
           </GridItem>
         </Show>
         <GridItem w="100%" area={"main"} padding={"20px"}>
-          <GameGrid seleectedGenre={selectedGenre} />
+          <PlatformSelectors
+            onselectedPlatform={onselectedPlatform}
+            selectedplatform={selectedPlatform}
+          />
+          <GameGrid
+            seleectedGenre={selectedGenre}
+            selectedPlatform={selectedPlatform}
+          />
         </GridItem>
       </Grid>
     </>

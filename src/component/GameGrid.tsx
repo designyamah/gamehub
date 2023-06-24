@@ -5,11 +5,15 @@ import GameCardSkeleton from "./GameCardSkeleton";
 
 interface Props {
   seleectedGenre: any;
+  selectedPlatform: any;
 }
 
-const GameGrid = ({ seleectedGenre }: Props) => {
+const GameGrid = ({ seleectedGenre, selectedPlatform }: Props) => {
   //the useGame hook is a custom hhok used to fecth the games
-  const { games, error, isloading } = useGames(seleectedGenre.id);
+  const { games, error, isloading } = useGames(
+    seleectedGenre.id,
+    selectedPlatform.id
+  );
   const Skeleton = [1, 2, 3, 4, 5, 6];
   return (
     <>

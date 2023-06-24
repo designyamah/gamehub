@@ -27,7 +27,7 @@ export interface Game {
   }
   
 
-const useGames = (selectedGenre:number | null) => {
+const useGames = (selectedGenre:number | null,selectedPlatform:number | null) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isloading, setIsloading] = useState(false);
@@ -41,7 +41,7 @@ const useGames = (selectedGenre:number | null) => {
     setGames([]);
     //api call hhtp request
     apiClient
-      .get<FetchGamesResponse>("/games",{signal: controller.signal,params:{genres:selectedGenre}})
+      .get<FetchGamesResponse>("/games",{signal: controller.signal,params:{genres:selectedGenre,platforms:selectedPlatform}})
       .then((res) => {setGames(res.data.results); setIsloading(false)})
       .catch((err) => {
         if(err instanceof CanceledError) return;
@@ -51,7 +51,7 @@ const useGames = (selectedGenre:number | null) => {
     console.log(selectedGenre)
 
       return () => controller.abort()
-  }, [selectedGenre]);
+  }, [selectedGenre,selectedPlatform]);
 
   return {games,setGames, error, setError, isloading}
 }
