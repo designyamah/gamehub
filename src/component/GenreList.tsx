@@ -12,11 +12,11 @@ import getCropUrl from "../services/image-url";
 import GenreSkeleton from "./GenreSkeleton";
 
 interface Props {
-  onselected: (genre: any) => void;
+  onselectedGenre: (genre: any) => void;
   selectedGenre: any;
 }
 
-const GenreList = ({ onselected, selectedGenre }: Props) => {
+const GenreList = ({ onselectedGenre, selectedGenre }: Props) => {
   const { genre } = useGenre();
   const Skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
@@ -38,7 +38,7 @@ const GenreList = ({ onselected, selectedGenre }: Props) => {
                 /> */}
                 <Button
                   variant={"link"}
-                  onClick={() => onselected(g)}
+                  onClick={() => onselectedGenre(g)}
                   padding={"10px"}
                 >
                   {g.name}
