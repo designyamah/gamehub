@@ -6,13 +6,19 @@ import GameCardSkeleton from "./GameCardSkeleton";
 interface Props {
   seleectedGenre: any;
   selectedPlatform: any;
+  selectedSort: any;
 }
 
-const GameGrid = ({ seleectedGenre, selectedPlatform }: Props) => {
+const GameGrid = ({
+  seleectedGenre,
+  selectedPlatform,
+  selectedSort,
+}: Props) => {
   //the useGame hook is a custom hhok used to fecth the games
   const { games, error, isloading } = useGames(
     seleectedGenre.id,
-    selectedPlatform.id
+    selectedPlatform.id,
+    selectedSort.value
   );
   const Skeleton = [1, 2, 3, 4, 5, 6];
   return (

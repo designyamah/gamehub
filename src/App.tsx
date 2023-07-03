@@ -10,6 +10,7 @@ import SortSelector from "./component/sortSelector";
 function App() {
   const [selectedGenre, setSelectedGenre] = useState({});
   const [selectedPlatform, setSelectedPlatform] = useState({});
+  const [selectedSort, setSelectedSort] = useState({});
 
   const onselectedGenre = (genre: any) => {
     console.log(genre);
@@ -18,6 +19,10 @@ function App() {
 
   const onselectedPlatform = (platform: any) => {
     setSelectedPlatform(platform);
+  };
+
+  const onselectedSortOrder = (sortOrder: any) => {
+    setSelectedSort(sortOrder);
   };
 
   useEffect(() => {
@@ -52,11 +57,15 @@ function App() {
               onselectedPlatform={onselectedPlatform}
               selectedplatform={selectedPlatform}
             />
-            <SortSelector />
+            <SortSelector
+              onselectedSortOrder={onselectedSortOrder}
+              selectedSort={selectedSort}
+            />
           </HStack>
           <GameGrid
             seleectedGenre={selectedGenre}
             selectedPlatform={selectedPlatform}
+            selectedSort={selectedSort}
           />
         </GridItem>
       </Grid>
