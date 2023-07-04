@@ -24,10 +24,11 @@ export interface Game {
   interface FetchGamesResponse {
     count: number;
     results: Game[];
+    next:string
   }
   
 
-const useGames = (selectedGenre:number | null,selectedPlatform:number | null, selectedSort:string) => {
+const useGames = (selectedGenre:number | null,selectedPlatform:number | null, selectedSort:string,selctedSearch:string,selctedPage:number) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isloading, setIsloading] = useState(false);
@@ -45,10 +46,12 @@ const useGames = (selectedGenre:number | null,selectedPlatform:number | null, se
         params:{
           genres:selectedGenre,
           platforms:selectedPlatform,
-          ordering:selectedSort
+          ordering:selectedSort,
+          search:selctedSearch,
+          page:selctedPage
         }
       })
-      .then((res) => {setGames(res.data.results); setIsloading(false)})
+      .then((res) => {setGames(res.data.results); setIsloading(false); console.log(res.data.next)})
       .catch((err) => {
         if(err instanceof CanceledError) return;
         setError(err.message);
@@ -57,7 +60,7 @@ const useGames = (selectedGenre:number | null,selectedPlatform:number | null, se
     console.log(selectedGenre)
 
       return () => controller.abort()
-  }, [selectedGenre,selectedPlatform,selectedSort]);
+  }, [selectedGenre,selectedPlatform,selectedSort,selctedSearch,selctedPage]);
 
   return {games,setGames, error, setError, isloading}
 }

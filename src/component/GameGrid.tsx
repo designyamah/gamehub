@@ -1,4 +1,4 @@
-import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { Button, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -7,18 +7,24 @@ interface Props {
   seleectedGenre: any;
   selectedPlatform: any;
   selectedSort: any;
+  selectedSearch: string;
+  selectedPage: any;
 }
 
 const GameGrid = ({
   seleectedGenre,
   selectedPlatform,
   selectedSort,
+  selectedSearch,
+  selectedPage,
 }: Props) => {
   //the useGame hook is a custom hhok used to fecth the games
   const { games, error, isloading } = useGames(
     seleectedGenre.id,
     selectedPlatform.id,
-    selectedSort.value
+    selectedSort.value,
+    selectedSearch,
+    selectedPage
   );
   const Skeleton = [1, 2, 3, 4, 5, 6];
   return (
