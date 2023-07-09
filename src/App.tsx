@@ -1,11 +1,19 @@
-import { Button, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import {
+  Button,
+  Grid,
+  GridItem,
+  HStack,
+  Heading,
+  Show,
+} from "@chakra-ui/react";
 import Navbar from "./component/Navbar";
 import GameGrid from "./component/GameGrid";
 import GenreList from "./component/GenreList";
 import { useEffect, useState } from "react";
 import PlatformSelectors from "./component/PlatformSelectors";
-import { GamePaltform } from "./hooks/usePlatform";
+import usePlatform, { GamePaltform } from "./hooks/usePlatform";
 import SortSelector from "./component/SortSelector";
+import GameHeading from "./component/GameHeading";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState({});
@@ -38,6 +46,8 @@ function App() {
   useEffect(() => {
     console.log(selectedGenre);
   });
+  const { platform, error } = usePlatform();
+  const Skeleton = [1, 2, 3, 4];
   return (
     <>
       <Grid
@@ -62,6 +72,10 @@ function App() {
           </GridItem>
         </Show>
         <GridItem w="100%" area={"main"} padding={"20px"}>
+          <GameHeading
+            selectedGenre={selectedGenre}
+            selectedPlatform={selectedPlatform}
+          />
           <HStack spacing={"20px"} marginBottom={"20px"}>
             <PlatformSelectors
               onselectedPlatform={onselectedPlatform}
@@ -78,7 +92,11 @@ function App() {
                 Previous Games
               </Button>
             )}
-            <Button onClick={() => onNextPage(nextPage + 1)}>Next Games</Button>
+            {platform.length !== 0 && (
+              <Button onClick={() => onNextPage(nextPage + 1)}>
+                Next Games
+              </Button>
+            )}
           </HStack>
           <GameGrid
             seleectedGenre={selectedGenre}
