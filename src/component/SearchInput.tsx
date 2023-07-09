@@ -10,7 +10,7 @@ function SearchInput({ onSearch }: Props) {
   const ref = useRef<HTMLInputElement>(null);
   return (
     <form
-      onSubmit={(event) => {
+      onChange={(event) => {
         event.preventDefault();
         if (ref.current) onSearch(ref.current?.value);
       }}
