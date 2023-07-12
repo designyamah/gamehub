@@ -94,7 +94,7 @@ function App() {
             )}
             {platform.length !== 0 && (
               <Button onClick={() => onNextPage(nextPage + 1)}>
-                Next Games
+                Nextt Games
               </Button>
             )}
           </HStack>
