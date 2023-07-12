@@ -23,7 +23,7 @@ function App() {
   const [nextPage, setNextPage] = useState(1);
 
   const onselectedGenre = (genre: any) => {
-    console.log(genre);
+    // console.log(genre);
     setSelectedGenre(genre);
   };
 
